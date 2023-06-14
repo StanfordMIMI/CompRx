@@ -1,0 +1,79 @@
+- - "Accuracy_1_RSNA"
+  - group_id: 1
+  - _target_: torchmetrics.classification.BinaryAccuracy
+- - "F1Score_1_RSNA"
+  - group_id: 1
+  - _target_: torchmetrics.classification.BinaryF1Score
+- - "Precision_1_RSNA"
+  - group_id: 1
+  - _target_: torchmetrics.classification.BinaryPrecision
+- - "Recall_1_RSNA"
+  - group_id: 1
+  - _target_: torchmetrics.classification.BinaryRecall
+- - "AUROC_1_RSNA"
+  - group_id: 1
+  - _target_: torchmetrics.classification.BinaryAUROC
+
+- - "Accuracy_2_VinDR"
+  - group_id: 2
+  - _target_: torchmetrics.classification.BinaryAccuracy
+- - "F1Score_2_VinDR"
+  - group_id: 2
+  - _target_: torchmetrics.classification.BinaryF1Score
+- - "Precision_2_VinDR"
+  - group_id: 2
+  - _target_: torchmetrics.classification.BinaryPrecision
+- - "Recall_2_VinDR"
+  - group_id: 2
+  - _target_: torchmetrics.classification.BinaryRecall
+- - "AUROC_2_VinDR"
+  - group_id: 2
+  - _target_: torchmetrics.classification.BinaryAUROC
+
+- - "Accuracy_3_CSAW"
+  - group_id: 3
+  - _target_: torchmetrics.classification.BinaryAccuracy
+- - "F1Score_3_CSAW"
+  - group_id: 3
+  - _target_: torchmetrics.classification.BinaryF1Score
+- - "Precision_3_CSAW"
+  - group_id: 3
+  - _target_: torchmetrics.classification.BinaryPrecision
+- - "Recall_3_CSAW"
+  - group_id: 3
+  - _target_: torchmetrics.classification.BinaryRecall
+- - "AUROC_3_CSAW"
+  - group_id: 3
+  - _target_: torchmetrics.classification.BinaryAUROC
+
+- - "Accuracy_4_EMBED"
+  - group_id: 4
+  - _target_: torchmetrics.classification.BinaryAccuracy
+- - "F1Score_4_EMBED"
+  - group_id: 4
+  - _target_: torchmetrics.classification.BinaryF1Score
+- - "Precision_4_EMBED"
+  - group_id: 4
+  - _target_: torchmetrics.classification.BinaryPrecision
+- - "Recall_4_EMBED"
+  - group_id: 4
+  - _target_: torchmetrics.classification.BinaryRecall
+- - "AUROC_4_EMBED"
+  - group_id: 4
+  - _target_: torchmetrics.classification.BinaryAUROC
+
+- - "Accuracy_5_CMMD"
+  - group_id: 5
+  - _target_: torchmetrics.classification.BinaryAccuracy
+- - "F1Score_5_CMMD"
+  - group_id: 5
+  - _target_: torchmetrics.classification.BinaryF1Score
+- - "Precision_5_CMMD"
+  - group_id: 5
+  - _target_: torchmetrics.classification.BinaryPrecision
+- - "Recall_5_CMMD"
+  - group_id: 5
+  - _target_: torchmetrics.classification.BinaryRecall
+- - "AUROC_5_CMMD"
+  - group_id: 5
+  - _target_: torchmetrics.classification.BinaryAUROC

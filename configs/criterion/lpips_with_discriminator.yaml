@@ -1,0 +1,4 @@
+_target_: comprx.losses.LPIPSWithDiscriminator
+disc_start: 10000000 #50001
+kl_weight: 0.000001
+disc_weight: 0.5

@@ -1,0 +1,4 @@
+_target_: monai.losses.DiceCELoss
+include_background: false
+to_onehot_y: true
+softmax: true

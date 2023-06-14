@@ -1,0 +1,60 @@
+defaults:
+  - default.yaml
+
+train:
+  dataset:
+    _target_: comprx.dataloaders.ConcatDataset
+    dataset_ids:
+      - ${dataset_id}
+    datasets:
+      # RSNA Bone Age Dataset
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/msk-1/splits/${csv_stem}.csv
+        split_column: split
+        split_name: train
+        data_dir: ${paths.data_dir}/vae/msk-1/data/${data_subdir}
+        dataset_id: 9
+        img_column: id
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["age_year"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: int64
+
+valid:
+  dataset:
+    _target_: comprx.dataloaders.ConcatDataset
+    dataset_ids:
+      - ${dataset_id}
+    datasets:
+      # RSNA Bone Age Dataset
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/msk-1/splits/${csv_stem}.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/msk-1/data/${data_subdir}
+        dataset_id: 9
+        img_column: id
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["age_year"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: int64

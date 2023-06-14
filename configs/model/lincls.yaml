@@ -1,0 +1,16 @@
+_target_: comprx.models.create_linear_cls
+
+# backbone/encoder of the network (=model_name for timm)
+backbone: ???
+
+# the number of channels for the images in the dataset (=in_chans for timm)
+num_channels: ???
+
+# number of classes in the target
+num_classes: ???
+
+# freeze all layers except the fc
+freeze: true
+
+# restart from checkpoint, use pretrained arg for imagenet weights (see timm)
+ckpt_path: ???

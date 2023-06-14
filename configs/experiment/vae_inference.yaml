@@ -1,0 +1,28 @@
+# @package _global_
+
+defaults:
+  - override /dataloader: vae_inference.yaml
+
+# General settings
+dataset_ids: ???
+csv_stem: ???
+
+num_latent_channels: ???
+
+img_size: ???
+resume_from_ckpt: ???
+
+# Overrides
+paths:
+  inference_output_dir: ???
+
+model:
+  embed_dim: ${num_latent_channels}
+  ddconfig:
+    ch: 128
+    in_channels: 1
+    out_ch: 1
+    ch_mult: ???
+
+# Training settings
+mixed_precision: "no"

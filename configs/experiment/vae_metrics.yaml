@@ -1,0 +1,34 @@
+# @package _global_
+
+defaults:
+  - override /dataloader: vae_metrics.yaml
+  - override /metrics: reconstruction_all.yaml
+  - override /criterion: lpips_with_discriminator.yaml
+
+task_name: vae_metrics
+
+# General settings
+num_latent_channels: 1
+ch_mult: [1, 2, 4]
+dataset_ids: [10]
+fine_grained: False
+
+img_size: 768
+
+# Overrides
+model:
+  embed_dim: ${num_latent_channels}
+  ddconfig:
+    ch: 128
+    in_channels: 1
+    out_ch: 1
+    ch_mult: ${ch_mult}
+
+criterion:
+  num_channels: 1
+  disc_start: 3125
+
+dataloader:
+  valid:
+    batch_size: 1
+    shuffle: True

@@ -1,0 +1,36 @@
+# @package _global_
+
+defaults:
+  - override /dataloader: vae_resizedcrop.yaml
+  - override /metrics: reconstruction.yaml
+  - override /criterion: lpips_with_discriminator.yaml
+
+# General settings
+num_latent_channels: ???
+downsize_factor: ${eval:'2 ** (len(${model.ddconfig.ch_mult})-1)'}
+img_size: 384
+task_name: vae_${downsize_factor}x_${num_latent_channels}c_${img_size}s
+
+# Training settings
+gradient_accumulation_steps: 2
+mixed_precision: "no"
+max_epoch: 100
+batch_size: 64
+log_every_n_steps: 20
+base_learning_rate: 4.5e-6
+ema_decay: null
+fast_dev_run: false
+
+# Overrides
+model:
+  embed_dim: ${num_latent_channels}
+  ddconfig:
+    ch: 128
+    in_channels: 1
+    out_ch: 1
+    ch_mult: ???
+    # attn_resolutions: [16, 8]
+
+criterion:
+  num_channels: 1
+  disc_start: 3125

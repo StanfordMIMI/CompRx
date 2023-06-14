@@ -1,0 +1,14 @@
+_target_: comprx.models.AutoencoderKL
+embed_dim: ???
+
+ddconfig:
+  double_z: True
+  z_channels: ${model.embed_dim}
+  resolution: ${img_size}
+  in_channels: ???
+  out_ch: ???
+  ch: 128
+  ch_mult: ??? #[1, 2, 4, 4] # num_down = len(ch_mult)-1
+  num_res_blocks: 2
+  attn_resolutions: []
+  dropout: 0.0

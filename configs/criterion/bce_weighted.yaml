@@ -1,0 +1,5 @@
+#BCE with weights to account for class imbalance
+_target_: torch.nn.BCEWithLogitsLoss
+pos_weight:
+  _target_: torch.tensor
+  data: [1.0]

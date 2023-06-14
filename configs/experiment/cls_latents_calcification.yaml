@@ -1,0 +1,7 @@
+# @package _global_
+
+defaults:
+  - cls_bicubic_calcification.yaml
+  - override /dataloader: cls_latents_calcification.yaml
+
+num_channels: ???

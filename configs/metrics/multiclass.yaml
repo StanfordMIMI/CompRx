@@ -1,0 +1,15 @@
+- - "Acc@1"
+  - _target_: torchmetrics.classification.MulticlassAccuracy
+    num_classes: ${model.num_classes}
+    top_k: 1
+- - "Acc@2"
+  - _target_: torchmetrics.classification.MulticlassAccuracy
+    num_classes: ${model.num_classes}
+    top_k: 2
+- - "Acc@5"
+  - _target_: torchmetrics.classification.MulticlassAccuracy
+    num_classes: ${model.num_classes}
+    top_k: 5
+- - "AUROC"
+  - _target_: torchmetrics.classification.MulticlassAUROC
+    num_classes: ${model.num_classes}

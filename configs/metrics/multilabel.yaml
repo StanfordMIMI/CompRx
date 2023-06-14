@@ -1,0 +1,7 @@
+- - "Auc@Multilabel"
+  - _target_: torchmetrics.classification.MultilabelAUROC
+    num_labels: ${model.num_classes}
+    average: macro
+- - "Acc@Multilabel"
+  - _target_: torchmetrics.classification.MultilabelAccuracy
+    num_labels: ${model.num_classes}

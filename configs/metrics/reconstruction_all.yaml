@@ -1,0 +1,14 @@
+- - "PSNR"
+  - _target_: comprx.metrics.PSNR
+- - "MSE"
+  - _target_: comprx.metrics.MSE
+- - "MS-SSIM"
+  - _target_: comprx.metrics.MS_SSIM
+- - "FID-Inception"
+  - _target_: comprx.metrics.FID_Inception
+- - "FID-CLIP"
+  - _target_: comprx.metrics.FID_CLIP
+    version: CLIP
+- - "FID_BiomedCLIP"
+  - _target_: comprx.metrics.FID_CLIP
+    version: BiomedCLIP

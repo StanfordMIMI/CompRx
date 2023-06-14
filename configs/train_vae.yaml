@@ -1,0 +1,65 @@
+# @package _global_
+
+# specify here default configuration
+# order of defaults determines the order in which configs override each other
+defaults:
+  - _self_
+  - hydra: default.yaml
+  - paths: default.yaml
+  - model: autoencoder_kl.yaml
+  - criterion: lpips_with_discriminator.yaml
+  - logger: null
+
+  # choose a dataloader for the experiments
+  - dataloader: ???
+
+  # keep track of metrics during the experiment
+  - metrics: default.yaml
+  - metrics_slice: default.yaml
+
+  # experiment configs allow for version control of specific hyperparameters
+  # e.g. best hyperparameters for given model and datamodule
+  - experiment: ???
+
+# task name, determines output directory path
+task_name: null
+
+# tags to help you identify your experiments
+tags: []
+
+# log frequency
+log_every_n_steps: 10
+
+# start trainig at epoch n
+start_epoch: 0
+
+# stop training at epoch n
+max_epoch: 50
+
+# mini-batch size
+batch_size: 256
+
+# gradient accumulation
+gradient_accumulation_steps: 1
+
+# checkpoint path to the accelerator state (this should be a directory)
+resume_from_ckpt: null
+
+# directory to store checkpoints in, same as the global output dir for this run
+ckpt_dir: ${paths.output_dir}/checkpoints
+
+# checkpoint frequency
+ckpt_every_n_steps: 500
+
+# seed for random number generators in pytorch, numpy and python.random
+# sets cudnn to deterministic too
+seed: null
+
+# Run one training step, and if applicable a validation step
+fast_dev_run: false
+
+# For mixed precision training
+mixed_precision: "no"
+
+# For VAE inference (saving latents from trained model)
+inference: false

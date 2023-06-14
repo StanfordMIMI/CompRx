@@ -1,0 +1,17 @@
+# @package _global_
+
+defaults:
+  - cls_base.yaml
+  - override /dataloader: cls_bicubic_fracture.yaml
+  - override /criterion: bce.yaml
+  - override /metrics: binaryclass.yaml
+  - override /metrics_slice: default.yaml
+
+# General settings
+csv_stem: fracture
+num_channels: 1
+dataset_id: 7
+
+# Override model settings
+model:
+  num_classes: 1

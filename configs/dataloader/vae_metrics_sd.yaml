@@ -1,0 +1,274 @@
+defaults:
+  - default.yaml
+
+train:
+  batch_size: 1
+  dataset: null
+
+valid:
+  batch_size: 1
+  dataset:
+    _target_: comprx.dataloaders.ConcatDataset
+    dataset_ids: ${dataset_ids}
+    datasets:
+      # RSNA Mammography
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-1/splits/vae.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-1/data/full-zarr
+        dataset_id: 1
+        txt_column: image_uuid
+        img_column: image_uuid
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _target_: comprx.utils.loaders.ZarrLoader
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # VinDr Mammography
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-2/splits/vae.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-2/data/full-zarr
+        dataset_id: 2
+        txt_column: image_uuid
+        img_column: image_uuid
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _target_: comprx.utils.loaders.ZarrLoader
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # CSAW-CC Mammography
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-3/splits/vae.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-3/data/full-zarr
+        dataset_id: 3
+        txt_column: image_uuid
+        img_column: image_uuid
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _target_: comprx.utils.loaders.ZarrLoader
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # EMBED Mammography
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-4/splits/vae.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-4/data/full-zarr
+        dataset_id: 4
+        txt_column: image_uuid
+        img_column: image_uuid
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _target_: comprx.utils.loaders.ZarrLoader
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # CMMD Mammography
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-5/splits/vae.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-5/data/full-zarr
+        dataset_id: 5
+        txt_column: image_uuid
+        img_column: image_uuid
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _target_: comprx.utils.loaders.ZarrLoader
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # INbreast Mammography
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-6/splits/vae.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-6/data/full-zarr
+        dataset_id: 6
+        txt_column: image_uuid
+        img_column: image_uuid
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _target_: comprx.utils.loaders.ZarrLoader
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # CANDID-PTX
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/cr-1/splits/valid.csv
+        data_dir: ${paths.data_dir}/vae/cr-1/data/bicubic-1024
+        dataset_id: 7
+        txt_column: image_uuid
+        img_column: image_uuid
+        img_suffix: .img.npy
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # MIMIC-CXR
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/cr-2/splits/valid-full.csv
+        data_dir: ${paths.data_dir}/vae/cr-2/data/full-npz
+        dataset_id: 8
+        txt_column: image_uuid
+        img_column: image_uuid
+        img_suffix: .npz
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # RSNA Bone Age Dataset
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/msk-1/splits/data.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/msk-1/data/full
+        dataset_id: 9
+        img_column: id
+        img_suffix: .npz
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]
+
+      # Pediatric Wrist Fracture Dataset
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/msk-2/splits/data.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/msk-2/data/full
+        dataset_id: 10
+        img_column: id
+        img_suffix: .npz
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]

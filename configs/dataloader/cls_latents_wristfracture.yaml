@@ -1,0 +1,62 @@
+defaults:
+  - default.yaml
+
+train:
+  dataset:
+    _target_: comprx.dataloaders.ConcatDataset
+    dataset_ids:
+      - ${dataset_id}
+    datasets:
+      # Pediatric Wrist Fracture Dataset
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/msk-2/splits/${csv_stem}.csv
+        split_column: split
+        split_name: train
+        data_dir: ${paths.data_dir}/vae/msk-2/data/${data_subdir}
+        dataset_id: 10
+        img_column: id
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["fracture"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: float32
+          squeeze: -1
+
+valid:
+  dataset:
+    _target_: comprx.dataloaders.ConcatDataset
+    dataset_ids:
+      - ${dataset_id}
+    datasets:
+      # Pediatric Wrist Fracture Dataset
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/msk-2/splits/${csv_stem}.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/msk-2/data/${data_subdir}
+        dataset_id: 10
+        img_column: id
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["fracture"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: float32
+          squeeze: -1

@@ -1,0 +1,10 @@
+- - "Accuracy"
+  - _target_: torchmetrics.classification.BinaryAccuracy
+- - "F1Score"
+  - _target_: torchmetrics.classification.BinaryF1Score
+- - "Precision"
+  - _target_: torchmetrics.classification.BinaryPrecision
+- - "Recall"
+  - _target_: torchmetrics.classification.BinaryRecall
+- - "AUROC"
+  - _target_: torchmetrics.classification.BinaryAUROC

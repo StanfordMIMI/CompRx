@@ -1,0 +1,40 @@
+defaults:
+  - default.yaml
+
+train:
+  batch_size: 1
+  dataset: null
+
+valid:
+  batch_size: 1
+  dataset:
+    _target_: comprx.dataloaders.ConcatDataset
+    dataset_ids: ${dataset_ids}
+    datasets:
+      # Pediatric Wrist Fracture Dataset
+      - _partial_: true
+        _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/msk-2/splits/bbox.csv
+        split_column: split
+        split_name: fracture
+        data_dir: ${paths.data_dir}/vae/msk-2/data/full
+        dataset_id: 10
+        img_column: id
+        txt_column: id
+        img_suffix: .npz
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Resize
+              size:
+                - ${img_size}
+                - ${img_size}
+              interpolation: 3
+              antialias: True
+            - _target_: comprx.utils.transforms.Expand
+              num_channels: 3
+            - _target_: torchvision.transforms.Normalize
+              mean: [0.5]
+              std: [0.5]

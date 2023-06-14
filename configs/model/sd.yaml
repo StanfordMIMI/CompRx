@@ -1,0 +1,15 @@
+_target_: comprx.models.SDEncoder
+
+# the number of channels for the images in the dataset (=in_chans for timm)
+# num_channels: ???
+
+# number of classes in the target
+num_classes: ???
+
+# freeze all layers except the fc
+freeze: True
+
+# pretrained from HuggingFace
+pretrained: True
+# restart from checkpoint, use pretrained arg for imagenet weights (see timm)
+# ckpt_path: ???

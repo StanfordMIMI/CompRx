@@ -1,0 +1,24 @@
+# @package _global_
+
+defaults:
+  - cls_base.yaml
+  - override /dataloader: cls_bicubic_boneage.yaml
+  - override /criterion: xe.yaml
+  - override /metrics: multiclass.yaml
+  - override /metrics_slice: default.yaml
+
+# General settings
+data_subdir: ???
+csv_stem: data
+num_channels: 1
+dataset_id: 9
+ckpt_path: null
+
+# Override model settings
+model:
+  backbone: hrnet_w64
+  num_classes: 20
+  pretrained: true
+
+batch_size: 128
+mixed_precision: "fp16"

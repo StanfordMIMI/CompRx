@@ -1,0 +1,16 @@
+train:
+  dataset: ???
+  batch_size: ${batch_size} # total amount across gpus and nodes
+  shuffle: true
+  num_workers: 10 # total amount across nodes
+  pin_memory: true
+  drop_last: true
+
+# the valid dataloader is not always used, so ??? are replaced by null
+valid:
+  dataset: null
+  batch_size: ${batch_size}
+  shuffle: false
+  num_workers: 10
+  pin_memory: true
+  drop_last: false

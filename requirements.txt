@@ -1,0 +1,29 @@
+# --------- pytorch --------- #
+# torch>=1.10.0
+torchvision>=0.11.0
+
+# --------- hydra --------- #
+hydra-core==1.2.0
+hydra-colorlog==1.2.0
+hydra-optuna-sweeper==1.2.0
+
+# --------- loggers --------- #
+wandb
+
+# --------- others --------- #
+pyrootutils     # find the project root
+pre-commit      # hooks for applying linters on commit
+rich            # beautiful text formatting in terminal
+pytest          # tests
+
+# --------- custom ---------- #
+diffusers       # diffusion models from HuggingFace
+timm            # model backbones
+transformers    # text encoders
+zarr            # chunked n-dimensional array storage
+polars          # fast dataframe
+git+https://github.com/pyvoxel/pyvoxel  # Pyvoxel latest
+kornia          # image augmentations
+# accelerate      # huggingface's accelerate to take care of multi-node, multi-gpu
+git+https://github.com/Lightning-AI/metrics.git@release/stable  # metrics
+lightning-bolts # lightning bolts

@@ -1,0 +1,158 @@
+defaults:
+  - default.yaml
+
+train:
+  dataset:
+    _target_: comprx.dataloaders.ConcatDataset
+    dataset_ids:
+      - ${dataset_id}
+    datasets:
+      # VinDr Mammography
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-2/splits/malignancy.csv
+        split_column: split
+        split_name: train
+        data_dir: ${paths.data_dir}/vae/mg-2/data/${data_subdir}
+        dataset_id: 2
+        img_column: image_uuid
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["target"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: float32
+          squeeze: -1
+
+      # EMBED Mammography
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-4/splits/malignancy.csv
+        split_column: split
+        split_name: train
+        data_dir: ${paths.data_dir}/vae/mg-4/data/${data_subdir}
+        dataset_id: 4
+        img_column: image_uuid
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["target"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: float32
+          squeeze: -1
+
+      # CMMD Mammography
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-5/splits/malignancy.csv
+        split_column: split
+        split_name: train
+        data_dir: ${paths.data_dir}/vae/mg-5/data/${data_subdir}
+        dataset_id: 5
+        img_column: image_uuid
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["target"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: float32
+          squeeze: -1
+
+valid:
+  dataset:
+    _target_: comprx.dataloaders.ConcatDataset
+    dataset_ids:
+      - ${dataset_id}
+    datasets:
+      # VinDr Mammography
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-2/splits/malignancy.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-2/data/${data_subdir}
+        dataset_id: 2
+        img_column: image_uuid
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["target"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: float32
+          squeeze: -1
+
+      # EMBED Mammography
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-4/splits/malignancy.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-4/data/${data_subdir}
+        dataset_id: 4
+        img_column: image_uuid
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["target"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: float32
+          squeeze: -1
+
+      # CMMD Mammography
+      - _target_: comprx.dataloaders.GenericDataset
+        split_path: ${paths.data_dir}/vae/mg-5/splits/malignancy.csv
+        split_column: split
+        split_name: test
+        data_dir: ${paths.data_dir}/vae/mg-5/data/${data_subdir}
+        dataset_id: 5
+        img_column: image_uuid
+        img_suffix: .pt
+        img_transform:
+          _target_: torchvision.transforms.Compose
+          transforms:
+            - _partial_: true
+              _target_: comprx.utils.loaders.load_tensor
+            - _target_: torchvision.transforms.Normalize
+              mean: [0]
+              std: [4.6]
+        lbl_columns: ["target"]
+        lbl_transform:
+          _partial_: true
+          _target_: comprx.utils.loaders.load_labels
+          dtype: float32
+          squeeze: -1

@@ -1,0 +1,13 @@
+_target_: timm.create_model
+
+# backbone/encoder of the network (=model_name for timm)
+model_name: resnet50
+
+# the number of channels for the images in the dataset (=in_chans for timm)
+in_chans: ???
+
+# number of classes in the target
+num_classes: ???
+
+# initialize with ImageNet weights
+pretrained: false

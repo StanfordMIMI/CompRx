@@ -1,0 +1,32 @@
+# @package _global_
+
+defaults:
+  - override /dataloader: ???
+  - override /model: lincls.yaml
+  - override /criterion: ???
+  - override /metrics: ???
+  - override /metrics_slice: ???
+  - override /optimizer: adam.yaml
+
+# General settings
+data_subdir: ???
+csv_stem: ???
+num_channels: ???
+ckpt_path: ???
+task_name: cls_${data_subdir}_${csv_stem}_${num_channels}c_${dataset_id}d_${model.backbone}_freeze-${model.freeze}
+
+# Override model settings
+model:
+  backbone: ???
+  num_channels: ${num_channels}
+  num_classes: ???
+  freeze: true
+  ckpt_path: ${ckpt_path}
+
+# Training settings
+gradient_accumulation_steps: 1
+mixed_precision: "no"
+max_epoch: 100
+batch_size: 256
+log_every_n_steps: 20
+ckpt_every_n_epochs: 100

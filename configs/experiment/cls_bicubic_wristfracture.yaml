@@ -1,0 +1,24 @@
+# @package _global_
+
+defaults:
+  - cls_base.yaml
+  - override /dataloader: cls_bicubic_wristfracture.yaml
+  - override /criterion: bce.yaml
+  - override /metrics: binaryclass.yaml
+  - override /metrics_slice: default.yaml
+
+# General settings
+data_subdir: ???
+csv_stem: data
+num_channels: 1
+dataset_id: 10
+ckpt_path: null
+
+# Override model settings
+model:
+  backbone: hrnet_w64
+  num_classes: 1
+  pretrained: true
+
+batch_size: 128
+mixed_precision: "fp16"
