@@ -113,28 +113,28 @@ def main(cfg: DictConfig):
     dataset_cat = get_dataset_cat(dataset_ids, cfg.fine_grained)
 
     if mode == "sd_kl":
-        conf = OmegaConf.load(f"/admin/home-mayavarma/vae-weights/{cfg.resume_from_ckpt}.yaml")
+        conf = OmegaConf.load(f"{root_dir}/vae-weights/{cfg.resume_from_ckpt}.yaml")
         model = AutoencoderKL(
             ddconfig=conf.model.params.ddconfig,
             embed_dim=conf.model.params.embed_dim,
-            ckpt_path=f"/admin/home-mayavarma/vae-weights/{cfg.resume_from_ckpt}.ckpt",
+            ckpt_path=f"{root_dir}/vae-weights/{cfg.resume_from_ckpt}.ckpt",
         ).cuda()
         model.requires_grad_(False)
     elif mode == "sd_vq":
-        conf = OmegaConf.load(f"/admin/home-mayavarma/vae-weights/{cfg.resume_from_ckpt}.yaml")
+        conf = OmegaConf.load(f"{root_dir}/vae-weights/{cfg.resume_from_ckpt}.yaml")
         model = AutoencoderVQ(
             ddconfig=conf.model.params.ddconfig,
             embed_dim=conf.model.params.embed_dim,
             n_embed=conf.model.params.n_embed,
-            ckpt_path=f"/admin/home-mayavarma/vae-weights/{cfg.resume_from_ckpt}.ckpt",
+            ckpt_path=f"{root_dir}/vae-weights/{cfg.resume_from_ckpt}.ckpt",
         ).cuda()
         model.requires_grad_(False)
     elif mode == "ours":
-        conf = OmegaConf.load(f"/admin/home-mayavarma/vae-weights/{cfg.resume_from_ckpt}.yaml")
+        conf = OmegaConf.load(f"{root_dir}/vae-weights/{cfg.resume_from_ckpt}.yaml")
         model = AutoencoderKL(
             ddconfig=conf.ddconfig,
             embed_dim=conf.embed_dim,
-            ckpt_path=f"/admin/home-mayavarma/vae-weights/{cfg.resume_from_ckpt}.ckpt",
+            ckpt_path=f"{root_dir}/vae-weights/{cfg.resume_from_ckpt}.ckpt",
         ).cuda()
         model.requires_grad_(False)
     elif mode in ["bicubic", "bilinear", "nearest"]:
